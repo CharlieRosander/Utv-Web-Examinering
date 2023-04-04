@@ -39,6 +39,12 @@
                                                         Mark as Done
                                                     </button>
                                                 </form>
+                                                {% else %}
+                                                <form action="{{ url_for('mark_order_as_pending', order_id=order.id) }}"
+                                                    method="post">
+                                                    <button type="submit" class="btn btn-warning btn-sm mx-2 my-2">
+                                                        Mark as Pending
+                                                    </button>
                                                 {% endif %}
                                                 <button type="button"
                                                     class="btn btn-primary btn-sm show-items mx-2 my-2"

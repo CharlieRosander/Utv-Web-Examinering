@@ -469,6 +469,17 @@ def mark_order_as_done(order_id):
 
     flash(f"Order with ID {order_id} has been marked as done.")
     return redirect(url_for('orders'))
+
+@app.route('/mark_order_as_pending/<int:order_id>', methods=['POST'])
+def mark_order_as_pending(order_id):
+    order = Orders.query.get(order_id)
+    order.completed = False
+    completed_order = CompletedOrders.query.filter_by(id=order_id).first()
+    db.session.delete(completed_order)
+
+    db.session.commit()
+    flash(f"Order with ID {order_id} has been marked as pending.")
+    return redirect(url_for('orders'))
 #### /ORDERS ####
 
 #### MANAGE USERS ####
