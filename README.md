@@ -44,6 +44,5 @@ Pizza Shop is a web application built with Flask, SQLite, and pandas. It allows 
 - `templates/`: Folder containing the HTML templates for the application.
 - `.env`: Environment variables file, containing the admin login.
 
-## License
 
-Created by Charlie Rosander. This project is licensed under the MIT License.
+Created by Charlie Rosander.
