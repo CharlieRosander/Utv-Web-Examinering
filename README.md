@@ -1,6 +1,6 @@
-# Pizza Shop
+# The Perfect Slice
 
-Pizza Shop is a web application built with Flask, SQLite, and pandas. It allows users to register, log in, view the menu, place orders, and manage their profile, while the admin can manage pizzas, orders, and users. The application features password hashing with Werkzeug and uses SQLAlchemy for database management.
+The Perfect Slice is a web application built with Flask, SQLite, and pandas. It allows users to register, log in, view the menu, place orders, and manage their profile, while the admin can manage pizzas, orders, and users. The application features password hashing with Werkzeug and uses SQLAlchemy for database management.
 
 ## Features
 
@@ -28,7 +28,13 @@ Pizza Shop is a web application built with Flask, SQLite, and pandas. It allows 
 2. Install the required packages with `pip install -r requirements.txt`
 3. Run the app with `python app.py`
 
+OR if you are using Docker:
+
+1. Run the command `docker run -p 5000:5000 kaliber123/theperfectslice` to run the image from my dockerhub.
+
 ## Usage
+
+**Note:** The admin login is stored in the `.env` file. The default login is `admin` and the password is `admin`. You can change the login and password by editing the `.env` file.
 
 1. Register a new user, log in as an existing user (or as the admin) or continue as a guest. Some features, like order history, are only available for registered users.
 2. Browse the menu and add items to the cart.
