@@ -29,7 +29,12 @@
                                 <td>{{ item['Name'] }}</td>
                                 <td>{{ item['Size'] }}</td>
                                 <td>${{ item['Price'] }}</td>
-                                <td>{{ item['Quantity'] }}</td>
+                                <td>
+                                    <input type="number" class="form-control form-control-sm"
+                                        value="{{ item['Quantity'] }}" min="1" onchange="updateQuantity(this)"
+                                        data-pizza-id="{{ item['id'] }}" style="width: 70px;">
+                                </td>
+
                                 <td>${{ item_total }}</td>
                                 <td>
                                     <form action="{{ url_for('remove_from_cart', pizza_id=item['id']) }}" method="post">
@@ -58,4 +63,31 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script>
+    function updateQuantity(inputElement) {
+        const pizzaId = inputElement.getAttribute('data-pizza-id');
+        const newQuantity = inputElement.value;
+
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = "{{ url_for('update_cart') }}";
+
+        const pizzaIdInput = document.createElement('input');
+        pizzaIdInput.type = 'hidden';
+        pizzaIdInput.name = 'pizza_id';
+        pizzaIdInput.value = pizzaId;
+        form.appendChild(pizzaIdInput);
+
+        const quantityInput = document.createElement('input');
+        quantityInput.type = 'hidden';
+        quantityInput.name = 'quantity';
+        quantityInput.value = newQuantity;
+        form.appendChild(quantityInput);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
 {% endblock %}

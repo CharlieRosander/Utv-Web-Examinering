@@ -333,6 +333,21 @@ def clear_cart():
     flash("Cart cleared")
     return redirect(url_for('cart')) 
 
+@app.route('/update_cart', methods=['POST'])
+def update_cart():
+    pizza_id = int(request.form.get('pizza_id'))
+    new_quantity = int(request.form.get('quantity'))
+    cart = json.loads(session['cart'])
+
+    for item in cart:
+        if item['id'] == pizza_id:
+            item['Quantity'] = new_quantity
+            break
+
+    session['cart'] = json.dumps(cart)
+    return redirect(url_for('cart'))
+
+
 # Checkout #
 @app.route('/checkout', methods=['POST'])
 def checkout():
