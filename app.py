@@ -87,13 +87,9 @@ def create_admin():
         db.session.add(admin)
         db.session.commit()
 
-# Create tables func #
-def create_tables():
-    db.create_all()
-
-# Call create_tables and admin funcs #
+# Create tables and call admin func #
 with app.app_context():
-    create_tables()
+    db.create_all()
     create_admin()
 #### /DATABASE ####
 
@@ -321,7 +317,7 @@ def remove_from_cart(pizza_id):
 def clear_cart():
     session['cart'] = json.dumps([])
     flash("Cart cleared")
-    return redirect(url_for('cart'))
+    return redirect(url_for('cart')) 
 
 # Checkout #
 @app.route('/checkout', methods=['POST'])
