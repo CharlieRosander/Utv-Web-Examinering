@@ -127,6 +127,8 @@ def add_user():
         else:
             flash(f"User: {user.username} already exists.", 'danger')
             return redirect(url_for('sign_up'))
+        
+        session.pop('user', None)
 
         flash(f"User: {new_user.username} created successfully.", 'success')
         return redirect(url_for('login'))
@@ -191,6 +193,8 @@ def index():
 def menu():
     if not session.get('cart'):
         session['cart'] = json.dumps([])
+    if not session.get('user'):
+        session['user'] = 'guest'
 
     cart = json.loads(session['cart'])
 
@@ -201,10 +205,18 @@ def menu():
 
 @app.route('/about')
 def about():
+    if not session.get('user'):
+        session['user'] = 'guest'
+    if not session.get('cart'):
+        session['cart'] = json.dumps([])
     return render_template('about.html')
 
 @app.route('/contact')
 def contact():
+    if not session.get('user'):
+        session['user'] = 'guest'
+    if not session.get('cart'):
+        session['cart'] = json.dumps([])
     return render_template('contact.html')
 
 @app.route('/profile')
@@ -272,6 +284,8 @@ def edit_contact_info():
 #### CART ####
 @app.route('/cart')
 def cart():
+    if not session.get('user'):
+        session['user'] = 'guest'
     if not session.get('cart'):
         session['cart'] = json.dumps([])
     cart = json.loads(session['cart'])
