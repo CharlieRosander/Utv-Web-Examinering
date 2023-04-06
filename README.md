@@ -23,6 +23,7 @@ The Perfect Slice is a web application built with Flask, SQLite, and pandas. It 
 - Werkzeug
 
 ## Installation
+**Note** Länk till github - https://github.com/CharlieRosander/Utv-Web-Examinering (Saknar .env)
 
 1. Clone the repository
 2. Install the required packages with `pip install -r requirements.txt`
